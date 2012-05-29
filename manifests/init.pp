@@ -1,6 +1,8 @@
 class keepalived (
     $ensure             = params_lookup('ensure'),
     $manage_config      = params_lookup('manage_config'),
+    $ensure_running     = params_lookup('ensure_running'),
+    $ensure_enabled     = params_lookup('ensure_enabled'),
     $config_source      = params_lookup('config_source'),
     $config_template    = params_lookup('config_template')
     ) {
@@ -8,6 +10,13 @@ class keepalived (
     package { 'keepalived':
         ensure => $ensure
     }
+
+    service { 'keepalived':
+        ensure      => $ensure_running,
+        enabled     => $ensure_enabled,
+        hasrestart  => true,
+        hasstatus   => true,
+
 
     file { '/etc/keepalived.conf':
         ensure  => present,
