@@ -52,6 +52,7 @@ class keepalived (
         enabled     => $ensure_enabled,
         hasrestart  => true,
         hasstatus   => true,
+        require     => Package['keepalived']
     }
 
     # Disable service on this host, if hostname is in disabled_hosts
@@ -67,6 +68,8 @@ class keepalived (
         mode    => '0644',
         owner   => 'root',
         group   => 'root',
+        require => Package['keepalived'],
+        notify  => Service['keepalived']
     }
 
     if $config_source {
