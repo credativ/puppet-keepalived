@@ -8,4 +8,5 @@ class keepalived::params {
     $config_template    = 'keepalived/keepalived.conf.erb'
     $config_source      = undef
     $ensure_running     = true
+    $disabled_hosts     = []
 }

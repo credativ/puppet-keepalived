@@ -39,7 +39,8 @@ class keepalived (
     $ensure_running     = params_lookup('ensure_running'),
     $ensure_enabled     = params_lookup('ensure_enabled'),
     $config_source      = params_lookup('config_source'),
-    $config_template    = params_lookup('config_template')
+    $config_template    = params_lookup('config_template'),
+    $disabled_hosts     = params_lookup('disabled_hosts')
     ) inherits keepalived::params {
 
     package { 'keepalived':
@@ -53,6 +54,13 @@ class keepalived (
         hasstatus   => true,
     }
 
+    # Disable service on this host, if hostname is in disabled_hosts
+    if $hostname in $disabled_hosts {
+        Service <| title == 'keepalived' |> {
+            ensure  => 'stopped',
+            enabled => false,
+        }
+    }
 
     file { '/etc/keepalived.conf':
         ensure  => present,
@@ -70,4 +78,6 @@ class keepalived (
             content => template($config_template)
         }
     }
+
+    
 }
