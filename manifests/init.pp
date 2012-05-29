@@ -51,6 +51,7 @@ class keepalived (
         enabled     => $ensure_enabled,
         hasrestart  => true,
         hasstatus   => true,
+    }
 
 
     file { '/etc/keepalived.conf':
