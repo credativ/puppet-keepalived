@@ -5,7 +5,7 @@ class keepalived (
     $ensure_enabled     = params_lookup('ensure_enabled'),
     $config_source      = params_lookup('config_source'),
     $config_template    = params_lookup('config_template')
-    ) {
+    ) inherits keepalived::params {
 
     package { 'keepalived':
         ensure => $ensure
