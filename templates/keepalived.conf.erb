@@ -2,7 +2,7 @@
 
 global_defs {
    notification_email {
-<% notification_email.each |email| do -%>
+<% notification_email.each do |email| -%>
     <%= notification_email %>
 <% end -%>
    }
@@ -16,13 +16,13 @@ global_defs {
 
 vrrp_sync_group VG1 {
     group {
-<% vrrp_instances.keys.each |instance| do -%>
+<% vrrp_instances.keys.each do |instance| -%>
         <%= instance %>
-<% end -%>
+<% end %>
     }
 }
 
-<% vrrp_instances.each |instance,config| do -%>
+<% vrrp_instances.each do |instance,config| -%>
 vrrp_instance <%= instance -%> {
     state <%= state %>
     interface <%= config['interface'] %>
@@ -36,28 +36,31 @@ vrrp_instance <%= instance -%> {
     }
 <% end -%>
 
-<% virtual_server_groups.each |group,config| do -%>
+<% virtual_server_groups.each do |group,config| -%>
 virtual_server_group <%= group -%> {
 <% config['params'].each do |key,value| %>
     <%= key %> <%= value %>
 
     <% config['real_servers'].each do |name,rs| %>
-<% if disabled_rs[name] -%>
+    <% if disabled_rs[name] -%>
     # <%= name is disabled by config %>
-<% else %>
+    <% else %>
     # <%= name %>
-    real server <%= rs['ip'] %> <%= rs['port'] {
-        weight: <%= rs['weight']
-        rs['check'] {
-            connect_timeout <%= rs['connect_timeout']
-            retry <%= rs['retry']
-            delay_before_retry <%= rs['delay_before_retry']
+    real server <%= rs['ip'] %> <%= rs['port'] %>{
+        weight: <%= rs['weight'] %>
+        <%= rs['check'] %> {
+            connect_timeout <%= rs['connect_timeout'] %>
+            retry <%= rs['retry'] %>
+            delay_before_retry <%= rs['delay_before_retry'] %>
             helo_name "<%= rs['helo_name'] %>
             host {
                 connect_ip <%= rs['ip'] %>
-                connect_port <%= rs['connect_port']
+                connect_port <%= rs['connect_port'] %>
             }
         }
     }
+<% end %>
+<% end %>
+<% end %>
 <% end %>
 }

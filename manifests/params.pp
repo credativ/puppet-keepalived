@@ -7,7 +7,6 @@ class keepalived::params {
     $manage_config      = true
     $config_template    = 'keepalived/keepalived.conf.erb'
     $config_source      = undef
-    $ensure_running     = true
     $disabled_hosts     = []
     $notification_email = 'root@localhost'
     $smtp_server        = '127.0.0.1'
