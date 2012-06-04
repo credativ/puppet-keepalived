@@ -42,7 +42,7 @@ virtual_server_group <%= group -%> {
     <%= key %> <%= value %>
 
     <% config['real_servers'].each do |name,rs| %>
-<% if disabled_hosts[name] -%>
+<% if disabled_rs[name] -%>
     # <%= name is disabled by config %>
 <% else %>
     # <%= name %>

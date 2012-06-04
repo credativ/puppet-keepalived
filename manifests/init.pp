@@ -40,7 +40,12 @@ class keepalived (
     $ensure_enabled     = params_lookup('ensure_enabled'),
     $config_source      = params_lookup('config_source'),
     $config_template    = params_lookup('config_template'),
-    $disabled_hosts     = params_lookup('disabled_hosts')
+    $disabled_hosts     = params_lookup('disabled_hosts'),
+    $disabled_rs        = params_lookup('disabled_rs'),
+    $smtp_server        = params_lookup('smtp_server'),
+    $notification_mail  = params_lookup('notification_email'),
+    $master             = params_lookup('master'),
+    $vrrp_instances     = params_lookup('vrrp_instances'),
     ) inherits keepalived::params {
 
     package { 'keepalived':
@@ -77,8 +82,18 @@ class keepalived (
             source  => $config_source
         }
     } else {
-        File <| title == '/etc/keepalived.conf' |> {
-            content => template($config_template)
+        if $master == $::hostname {
+            $state = 'MASTER'
+        } else {
+            $state = 'BACKUP'
+        }
+
+        if $vrrp_instances {
+            File <| title == '/etc/keepalived.conf' |> {
+                content => template($config_template)
+            }
+        } else {
+            fail("No vrrp_instances defined in backend")
         }
     }
 
