@@ -68,17 +68,18 @@ class keepalived (
         }
     }
 
-    file { '/etc/keepalived.conf':
+    file { '/etc/keepalived/keepalived.conf':
         ensure  => present,
         mode    => '0644',
         owner   => 'root',
         group   => 'root',
+        tag     => 'keepalived_config',
         require => Package['keepalived'],
         notify  => Service['keepalived']
     }
 
     if $config_source {
-        File <| title == '/etc/keepalived.conf' |> {
+        File <| tag == 'keepalived_config' |> {
             source  => $config_source
         }
     } else {
@@ -89,7 +90,7 @@ class keepalived (
         }
 
         if $vrrp_instances {
-            File <| title == '/etc/keepalived.conf' |> {
+            File <| tag == 'keepalived_config' |> {
                 content => template($config_template)
             }
         } else {
