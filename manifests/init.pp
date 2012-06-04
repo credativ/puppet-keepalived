@@ -41,7 +41,6 @@ class keepalived (
     $config_source      = params_lookup('config_source'),
     $config_template    = params_lookup('config_template'),
     $disabled_hosts     = params_lookup('disabled_hosts'),
-    $disabled_rs        = params_lookup('disabled_rs'),
     $smtp_server        = params_lookup('smtp_server'),
     $notification_mail  = params_lookup('notification_email'),
     $master             = params_lookup('master'),
