@@ -1,0 +1,63 @@
+## MANAGED BY PUPPET ##
+
+global_defs {
+   notification_email {
+<% notification_email.each |email| do -%>
+    <%= notification_email %>
+<% end -%>
+   }
+   notification_email_from keepalived@<%= fqdn %>
+
+   smtp_server <%= smtp_server %>
+   smtp_connect_timeout 10
+
+   lvs_id <%= fqdn %>
+} # END global_defs
+
+vrrp_sync_group VG1 {
+    group {
+<% vrrp_instances.keys.each |instance| do -%>
+        <%= instance %>
+<% end -%>
+    }
+}
+
+<% vrrp_instances.each |instance,config| do -%>
+vrrp_instance <%= instance -%> {
+    state <%= state %>
+    interface <%= config['interface'] %>
+    lvs_sync_daemon_interface <%= config['interface'] %>
+    priority 150
+    advert_int 1
+    smtp_alert
+    authentication {
+        auth_type <%= auth_type %>
+        auth_pass <%= auth_pass %>
+    }
+<% end -%>
+
+<% virtual_server_groups.each |group,config| do -%>
+virtual_server_group <%= group -%> {
+<% config['params'].each do |key,value| %>
+    <%= key %> <%= value %>
+
+    <% config['real_servers'].each do |name,rs| %>
+<% if disabled_hosts[name] -%>
+    # <%= name is disabled by config %>
+<% else %>
+    # <%= name %>
+    real server <%= rs['ip'] %> <%= rs['port'] {
+        weight: <%= rs['weight']
+        rs['check'] {
+            connect_timeout <%= rs['connect_timeout']
+            retry <%= rs['retry']
+            delay_before_retry <%= rs['delay_before_retry']
+            helo_name "<%= rs['helo_name'] %>
+            host {
+                connect_ip <%= rs['ip'] %>
+                connect_port <%= rs['connect_port']
+            }
+        }
+    }
+<% end %>
+}
