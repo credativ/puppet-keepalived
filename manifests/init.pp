@@ -29,6 +29,26 @@
 # [* config_template *]
 #   Override the default choice for the configuration template
 #
+# [* disabled_hosts *]
+#   A list of hosts whose keepalived will be disabled, if their
+#   hostname matches a name in the list.
+#
+# [* smtp_server *]
+#   The smtp server keepalived will send mails to (if configured
+#   via template)
+#
+# [* notification_email *]
+#   Array of email adresses keepalived will use for notification.
+#
+# [* master *]
+#   The hostname of the keepalived host which will be promoted to be master.
+#
+# [* vrrp_instances *]
+#   Specify the VRRP instances (if configured via template)
+#
+# [* virtual_server_groups *]
+#   Specify the virtual server groups.
+# 
 # == Author:
 #
 #   Patrick Schoenfeld <patrick.schoenfeld@credativ.de>
@@ -42,9 +62,10 @@ class keepalived (
     $config_template    = params_lookup('config_template'),
     $disabled_hosts     = params_lookup('disabled_hosts'),
     $smtp_server        = params_lookup('smtp_server'),
-    $notification_mail  = params_lookup('notification_email'),
+    $notification_email = params_lookup('notification_email'),
     $master             = params_lookup('master'),
     $vrrp_instances     = params_lookup('vrrp_instances'),
+    $virtual_server_groups = params_lookup('virtual_server_groups'),
     ) inherits keepalived::params {
 
     package { 'keepalived':
