@@ -74,7 +74,7 @@ class keepalived (
 
     service { 'keepalived':
         ensure      => $ensure_running,
-        enabled     => $ensure_enabled,
+        enable     => $ensure_enabled,
         hasrestart  => true,
         hasstatus   => true,
         require     => Package['keepalived']
