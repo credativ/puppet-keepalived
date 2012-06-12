@@ -125,7 +125,7 @@ class keepalived (
     }
 
     exec { 'keepalived_apply_sysctl':
-        exec        => '/sbin/sysctl -p'
+        exec        => '/sbin/sysctl -p',
         refreshonly => true,
     }
 }
