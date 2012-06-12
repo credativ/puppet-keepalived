@@ -128,4 +128,9 @@ class keepalived (
         command         => '/sbin/sysctl -p',
         refreshonly     => true,
     }
+
+    exec { 'enable_ipvs_module_load':
+        command         => '/bin/echo ip_vs >> /etc/modules',
+        unless          => '/bin/grep -qF ip_vs /etc/modules'
+    }
 }
