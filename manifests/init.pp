@@ -120,7 +120,7 @@ class keepalived (
 
     augeas { 'enable_ip_forwarding':
         context => "/files/etc/sysctl.conf",
-        changes => "set net.ipv4.ip_forward true"
+        changes => "set net.ipv4.ip_forward true",
         notify  => Exec['keepalived_apply_sysctl']
     }
 
