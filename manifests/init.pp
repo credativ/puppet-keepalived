@@ -76,7 +76,6 @@ class keepalived (
         ensure      => $ensure_running,
         enable     => $ensure_enabled,
         hasrestart  => true,
-        hasstatus   => true,
         require     => Package['keepalived']
     }
 
