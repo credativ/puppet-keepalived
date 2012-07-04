@@ -58,7 +58,7 @@ virtual_server group <%= group -%> {
             connect_timeout <%= rs['connect_timeout'] %>
             retry <%= rs['retry'] %>
             delay_before_retry <%= rs['delay_before_retry'] %>
-            helo_name "<%= rs['helo_name'] %>
+            helo_name "<%= rs['helo_name'] %>"
             host {
                 connect_ip <%= rs['ip'] %>
                 connect_port <%= rs['connect_port'] %>
