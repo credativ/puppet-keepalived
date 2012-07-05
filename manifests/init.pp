@@ -104,8 +104,10 @@ class keepalived (
     } else {
         if $master in [$::hostname, $::fqdn] {
             $state = 'MASTER'
+            $priority = 150
         } else {
             $state = 'BACKUP'
+            $priority = 100
         }
 
         if $vrrp_instances {

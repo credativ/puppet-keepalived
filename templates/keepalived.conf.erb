@@ -28,7 +28,7 @@ vrrp_instance <%= instance -%> {
     interface <%= config['interface'] %>
     virtual_router_id <%= config['router_id'] %>
     lvs_sync_daemon_interface <%= config['interface'] %>
-    priority 150
+    priority <%= priority %>
     advert_int 1
     smtp_alert
     authentication {
