@@ -102,7 +102,7 @@ class keepalived (
             source  => $config_source
         }
     } else {
-        if $master == $::hostname {
+        if $master in [$::hostname, $::fqdn] {
             $state = 'MASTER'
         } else {
             $state = 'BACKUP'
