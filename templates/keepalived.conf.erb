@@ -39,6 +39,7 @@ vrrp_instance <%= instance -%> {
         <%= config['vip'] %>
     }
 <% end -%>
+}
 
 <% virtual_server_groups.each do |group,config| -%>
 virtual_server_group <%= group -%> {
