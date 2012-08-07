@@ -44,6 +44,11 @@ vrrp_instance <%= instance -%> {
 <% virtual_server_groups.each do |group,config| -%>
 virtual_server_group <%= group -%> {
     <%= config['ip'] %> <%= config['port'] %>
+<% if config['additional_services'] -%>
+<% config['additional_services'].each do |ip,port| -%>
+    <%= ip %> <%= port %>
+<% end -%>
+<% end -%>
 }
 
 virtual_server group <%= group -%> {
