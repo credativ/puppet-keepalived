@@ -52,7 +52,6 @@
 # == Author:
 #
 #   Patrick Schoenfeld <patrick.schoenfeld@credativ.de>
-
 class keepalived (
     $ensure             = params_lookup('ensure'),
     $manage_config      = params_lookup('manage_config'),
