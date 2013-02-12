@@ -2,7 +2,7 @@ keepalived_notifification_email:
   - root@localhost
 keepalived_smtp_server: 127.0.0.1
 keepalived_master: entry1
-vrrp_instances:
+keepalived_vrrp_instances:
   "INTERN":
     interface: 'eth1'
     router_id: '51'
@@ -15,7 +15,7 @@ vrrp_instances:
     auth_type: 'AH'
     auth_pass: 'foobar'
     vip: 192.168.1.10/24
-virtual_server_groups:
+keepalived_virtual_server_groups:
     extern_virt25:
       ip: '192.168.1.10'
       port: '25'
