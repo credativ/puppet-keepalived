@@ -1,0 +1,3 @@
+[submodule "example42lib"]
+	path = example42lib
+	url = https://github.com/credativ/puppet-example42lib
