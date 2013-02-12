@@ -1,0 +1,38 @@
+keepalived_notifification_email:
+  - root@localhost
+keepalived_smtp_server: 127.0.0.1
+keepalived_master: entry1
+keepalived_vrrp_instances:
+  "INTERN":
+    interface: 'eth1'
+    router_id: '51'
+    auth_type: 'AH'
+    auth_pass: '1234'
+    vip: '10.1.2.3/28'
+  "EXTERN":
+    interface: 'eth0'
+    router_id: '52'
+    auth_type: 'AH'
+    auth_pass: 'foobar'
+    vip: 192.168.1.10/24
+virtual_server_groups:
+    extern_virt25:
+      ip: '192.168.1.10'
+      port: '25'
+      params:
+        lb_algo: 'sh'
+        lb_kind: 'NAT'
+        nat_mask: '255.255.255.248'
+        protocol: 'TCP'
+        sorry_server: '127.0.0.1 25'
+      real_servers:
+        testnode1:
+          ip: '192.168.1.101'
+          port: '25'
+          helo_name: 'testnode1.testcluster.lan'
+          weight: 1
+          check: 'SMTP_CHECK'
+          connect_timeout: '3'
+          retry: '3'
+          delay_before_retry: '3'
+          connect_port: '587'
