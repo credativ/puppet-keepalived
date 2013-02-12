@@ -82,7 +82,7 @@ class keepalived (
     if $hostname in $disabled_hosts {
         Service <| title == 'keepalived' |> {
             ensure  => 'stopped',
-            enabled => false,
+            enable  => false,
         }
     }
 
