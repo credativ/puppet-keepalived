@@ -2,8 +2,12 @@
 
 global_defs {
    notification_email {
-<% notification_email.each do |email| -%>
+<% if notification_email.is_a?(String) -%>
     <%= notification_email %>
+<% else -%>
+<% notification_email.each do |email| -%>
+    <%= email %>
+<% end -%>
 <% end -%>
    }
    notification_email_from keepalived@<%= fqdn %>
