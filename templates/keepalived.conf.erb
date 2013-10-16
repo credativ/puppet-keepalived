@@ -64,6 +64,80 @@ virtual_server group <%= group -%> {
     # <%= name %>
     real_server <%= rs['ip'] %> <%= rs['port'] %>{
         weight: <%= rs['weight'] %>
+        <%- if rs['SMTP_CHECK'] -%>
+         <%- rs['SMTP_CHECK'].each do |check| -%>
+        SMTP_CHECK {
+          connect_timeout <%= check['connect_timeout'] %>
+          retry <%= check['retry'] %>
+          delay_before_retry <%= check['delay_before_retry'] %>
+          <% if check['helo_name'] %>helo_name "<%= check['helo_name'] %>"<% end %>
+          <%- if check['host'] -%>
+          <%- check['host'].each do |host| -%>
+          host {
+                connect_ip <%= host['connect_ip'] %>
+                connect_port <%= host['connect_port'] %>
+                <% if host['bindto'] %>bindto <%= host['bindto'] -%><% end %>
+          }
+          <%- end -%>
+         <%- end -%>
+        }
+         <%- end -%>
+        <%- end -%>
+         <%- if rs['MISC_CHECK'] -%>
+         <%- rs['MISC_CHECK'].each do |check| -%>
+        MISC_CHECK {
+          misc_path <%= check['misc_path'] %>
+          misc_timeout <%= check['misc_timeout'] %>
+          <% if check['misc_dynamic'] %>misc_dynamic<%- end %>
+        }
+         <%- end -%>
+         <%- end -%>
+         <%- if rs['TCP_CHECK'] -%>
+         <%- rs['TCP_CHECK'].each do |check| -%>
+        TCP_CHECK {
+          connect_port <%= check['connect_port'] %>
+          connect_timeout <%= check['connect_timeout'] %>
+          bindto <%= check['bindto'] %>
+        }
+         <%- end -%>
+         <%- end -%>
+         <%- if rs['HTTP_GET'] -%>
+         <%- rs['HTTP_GET'].each do |check| -%>
+        HTTP_GET {
+          connect_port <%= check['connect_port'] %>
+          connect_timeout <%= check['connect_timeout'] %>
+          nb_get_retry <%= check['nb_get_retry'] %>
+          delay_before_retry <%= check['delay_before_retry'] %>
+          <%- if check['url'] -%>
+          <%- check['url'].each do |url| -%>
+          url {
+                path <%= url['path'] %>
+                digest <%= url['digest'] %>
+          }
+          <%- end -%>
+          <%- end -%>
+        }
+         <%- end -%>
+        <%- end -%>
+        <%- if rs['SSL_GET'] -%>
+         <%- rs['SSL_GET'].each do |check| -%>
+        SSL_GET {
+          connect_port <%= check['connect_port'] %>
+          connect_timeout <%= check['connect_timeout'] %>
+          nb_get_retry <%= check['nb_get_retry'] %>
+          delay_before_retry <%= check['delay_before_retry'] %>
+          <%- if check['url'] -%>
+          <%- check['url'].each do |url| -%>
+          url {
+                path <%= url['path'] %>
+                digest <%= url['digest'] %>
+          }
+          <%- end -%>
+         <%- end -%>
+        }
+         <%- end -%>
+        <%- end -%>
+        <%- if rs['check'] -%>
         <%= rs['check'] %> {
             connect_timeout <%= rs['connect_timeout'] %>
             retry <%= rs['retry'] %>
@@ -74,7 +148,8 @@ virtual_server group <%= group -%> {
                 connect_port <%= rs['connect_port'] %>
             }
         }
+        <%- end -%>
     }
-<% end -%>
+<%- end -%>
 }
 <% end -%>

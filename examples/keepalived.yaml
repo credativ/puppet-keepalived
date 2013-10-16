@@ -36,3 +36,104 @@ keepalived_virtual_server_groups:
           retry: '3'
           delay_before_retry: '3'
           connect_port: '587'
+       testnode2:
+         ip: '192.168.0.236'
+         port: '25'
+         weight: 1
+         SMTP_CHECK:
+           -
+             connect_timeout: 3
+             retry: 3
+             delay_before_retry: 3
+             host:
+               -
+                 connect_ip: '1.2.3.4'
+                 connect_port: '25'
+                 bindto: '1.1.1.1'
+               -
+                 connect_ip: '1.2.3.5'
+                 connect_port: '2525'
+                 bindto: '2.2.2.2'
+           -
+             connect_timeout: 4
+             retry: 4
+             delay_before_retry: 4
+             helo_name: 'its_me2'
+             host:
+               -
+                 connect_ip: '4.3.2.1'
+                 connect_port: '25'
+               -
+                 connect_ip: '4.3.2.2'
+                 connect_port: '2525'
+         MISC_CHECK:
+           -
+             misc_path: '/usr/local/bin/script.sh'
+             misc_timeout: 3
+           -
+             misc_path: '/usr/local/bin/otherscript.sh'
+             misc_timeout: 3
+             misc_dynamic: 1
+         TCP_CHECK:
+           -
+             connect_port: '2525'
+             connect_timeout: '33'
+             bindto: '2.2.2.2'
+           -
+             connect_port: '25'
+             connect_timeout: '3'
+             bindto: '3.3.3.3'
+         HTTP_GET:
+           -
+             url:
+               -
+                 path: '/http_monitor'
+                 digest: 'ab1b214b12bc12784'
+               -
+                 path: '/http_status.php'
+                 digest: 'ab1b214b12bc12784'
+             connect_port: 80
+             connect_timeout: 3
+             nb_get_retry: 3
+             delay_before_retry: 3
+             bindto: '1.2.3.4'
+           -
+             url:
+               -
+                 path: '/http_monitor2'
+                 digest: 'ab1b214b12bc12784'
+               -
+                 path: '/http_status2.php'
+                 digest: 'ab1b214b12bc12784'
+             connect_port: 8080
+             connect_timeout: 5
+             nb_get_retry: 5
+             delay_before_retry: 5
+             bindto: '1.2.3.5'
+         SSL_GET:
+           -
+             url:
+               -
+                 path: '/https_monitor'
+                 digest: 'ab1b214b12bc12784'
+               -
+                 path: '/https_status.php'
+                 digest: 'ab1b214b12bc12784'
+             connect_port: 443
+             connect_timeout: 3
+             nb_get_retry: 3
+             delay_before_retry: 3
+             bindto: '1.2.3.4'
+           -
+             url:
+               -
+                 path: '/https_monitor2'
+                 digest: 'ab1b214b12bc12784'
+               -
+                 path: '/https_status2.php'
+                 digest: 'ab1b214b12bc12784'
+             connect_port: 1443
+             connect_timeout: 13
+             nb_get_retry: 13
+             delay_before_retry: 13
+             bindto: '1.2.3.6'
