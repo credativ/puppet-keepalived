@@ -9,6 +9,7 @@ keepalived_vrrp_instances:
     auth_type: 'AH'
     auth_pass: '1234'
     vip: '10.1.2.3/28'
+    notify_master: 'Here I am, alone again'
   "EXTERN":
     interface: 'eth0'
     router_id: '52'

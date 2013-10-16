@@ -35,6 +35,7 @@ vrrp_instance <%= instance -%> {
     priority <%= priority %>
     advert_int 1
     smtp_alert
+    <% if config['notify_master'] %>notify_master "<%= config['notify_master'] %>"<%- end %>
     authentication {
         auth_type <%= config['auth_type'] %>
         auth_pass <%= config['auth_pass'] %>
