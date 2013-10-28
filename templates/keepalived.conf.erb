@@ -20,13 +20,19 @@ global_defs {
 
 vrrp_sync_group VG1 {
     group {
-<% vrrp_instances.keys.each do |instance| -%>
-        <%= instance %>
+<%- vrrp_instances.keys.each do |instance| -%>
+        <% if instance != '__params' %><%= instance %><% end %>
 <% end -%>
     }
+<% if vrrp_instances['__params'] -%>
+  <% vrrp_instances['__params'].each do |key,value| -%>
+  <%= key %> <%= value %>
+  <% end -%>
+<% end -%>
 }
 
 <% vrrp_instances.each do |instance,config| -%>
+<% if instance != '__params' %>
 vrrp_instance <%= instance -%> {
     state <%= state %>
     interface <%= config['interface'] %>
@@ -44,6 +50,7 @@ vrrp_instance <%= instance -%> {
         <%= config['vip'] %>
     }
 }
+<% end -%>
 <% end -%>
 
 <% virtual_server_groups.each do |group,config| -%>
