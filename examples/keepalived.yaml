@@ -16,6 +16,9 @@ keepalived_vrrp_instances:
     auth_type: 'AH'
     auth_pass: 'foobar'
     vip: 192.168.1.10/24
+  "__params":
+    notify_master: /path/to_master.sh
+    smtp_alert:
 keepalived_virtual_server_groups:
     extern_virt25:
       ip: '192.168.1.10'
