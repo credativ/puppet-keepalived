@@ -1,1 +1,1 @@
-etc/puppet/modules/keepalived
+usr/share/puppet/modules.available/keepalived
