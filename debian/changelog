@@ -1,3 +1,9 @@
+puppet-module-keepalived (1.0.2) unstable; urgency=medium
+
+  * fix path in dirs file
+
+ -- Patrick Schoenfeld <patrick.schoenfeld@credativ.de>  Tue, 24 Jun 2014 15:55:12 +0200
+
 puppet-module-keepalived (1.0.1) unstable; urgency=low
 
   * Initial release.
