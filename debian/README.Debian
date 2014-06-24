@@ -1,0 +1,6 @@
+puppet-module-keepalived for Debian
+---------------------------------------
+
+This puppet module has been packaged with dh-make-puppet.
+
+ -- Patrick Schoenfeld <patrick.schoenfeld@credativ.de>, Tue, 24 Jun 2014 14:44:57 +0200

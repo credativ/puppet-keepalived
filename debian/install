@@ -1,0 +1,10 @@
+manifests   usr/share/puppet/modules.available/keepalived
+spec   usr/share/puppet/modules.available/keepalived
+
+templates   usr/share/puppet/modules.available/keepalived
+Rakefile    usr/share/puppet/modules.available/keepalived
+Gemfile     usr/share/puppet/modules.available/keepalived
+LICENSE     usr/share/doc/puppet-module-keepalived
+README*     usr/share/doc/puppet-module-keepalived
+examples/*  usr/share/doc/puppet-module-keepalived/examples
+

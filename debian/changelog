@@ -1,0 +1,5 @@
+puppet-module-keepalived (1.0.1) unstable; urgency=low
+
+  * Initial release.
+
+ -- Patrick Schoenfeld <patrick.schoenfeld@credativ.de>  Tue, 24 Jun 2014 14:44:57 +0200
