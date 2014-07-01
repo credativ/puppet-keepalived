@@ -1,3 +1,11 @@
+puppet-module-keepalived (1.0.3) UNRELEASED; urgency=medium
+
+  * Add a (empty) default for virtual_server_groups, making them optional
+  * Remove a non-working line from keepalived.conf template, which was
+    supposed to make virtual_server_groups optional
+
+ -- Patrick Schoenfeld <patrick.schoenfeld@credativ.de>  Tue, 01 Jul 2014 11:30:21 +0200
+
 puppet-module-keepalived (1.0.2) unstable; urgency=medium
 
   * fix path in dirs file
