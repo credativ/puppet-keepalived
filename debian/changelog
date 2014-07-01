@@ -1,4 +1,11 @@
-puppet-module-keepalived (1.0.3) UNRELEASED; urgency=medium
+puppet-module-keepalived (1.0.4) unstable; urgency=medium
+
+  * Workaround weird puppet behavior
+  * add file resource for /var/lib/keepalived
+
+ -- Arnd Hannemann <arnd.hannemann@credativ.de>  Tue, 01 Jul 2014 17:17:43 +0200
+
+puppet-module-keepalived (1.0.3) unstable; urgency=medium
 
   * Add a (empty) default for virtual_server_groups, making them optional
   * Remove a non-working line from keepalived.conf template, which was
