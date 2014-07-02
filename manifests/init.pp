@@ -67,8 +67,13 @@ class keepalived (
     $virtual_server_groups = params_lookup('virtual_server_groups'),
     ) inherits keepalived::params {
 
-    package { 'keepalived':
+    package { 'pkg-keepalived':
+        name => 'keepalived',
         ensure => $ensure
+    }
+
+    file { '/var/lib/keepalived':
+        ensure => directory
     }
 
     service { 'keepalived':
@@ -76,7 +81,7 @@ class keepalived (
         enable     => $ensure_enabled,
         hasrestart  => true,
         hasstatus   => false,
-        require     => Package['keepalived']
+        require     => Package['pkg-keepalived']
     }
 
     # Disable service on this host, if hostname is in disabled_hosts
@@ -93,7 +98,7 @@ class keepalived (
         owner   => 'root',
         group   => 'root',
         tag     => 'keepalived_config',
-        require => Package['keepalived'],
+        require => Package['pkg-keepalived'],
         notify  => Service['keepalived']
     }
 

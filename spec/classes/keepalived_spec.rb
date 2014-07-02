@@ -14,7 +14,7 @@ describe 'keepalived' do
     id = 'keepalived'
     cfg = '/etc/keepalived/keepalived.conf'
 
-    it "should contain Package[keepalived]" do
+    it "should contain Package[pkg-keepalived]" do
         should contain_package(id).with(
             {
                 'ensure'    => 'present'
