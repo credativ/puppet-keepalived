@@ -26,7 +26,6 @@ keepalived_virtual_server_groups:
       params:
         lb_algo: 'sh'
         lb_kind: 'NAT'
-        nat_mask: '255.255.255.248'
         protocol: 'TCP'
         sorry_server: '127.0.0.1 25'
       real_servers:
