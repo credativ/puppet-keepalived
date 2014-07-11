@@ -94,7 +94,7 @@ virtual_server group <%= group -%> {
          <%- if rs['MISC_CHECK'] -%>
          <%- rs['MISC_CHECK'].each do |check| -%>
         MISC_CHECK {
-          misc_path <%= check['misc_path'] %>
+          misc_path "<%= check['misc_path'] %>"
           misc_timeout <%= check['misc_timeout'] %>
           <% if check['misc_dynamic'] %>misc_dynamic<%- end %>
         }
