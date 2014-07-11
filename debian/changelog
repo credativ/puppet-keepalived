@@ -1,4 +1,10 @@
-puppet-module-keepalived (1.0.5) UNRELEASED; urgency=medium
+puppet-module-keepalived (1.0.6) unstable; urgency=low
+
+  * Quote misc_path so the given command will be executed with parameters.
+
+ -- Damian Lukowski <damian.lukowski@credativ.de>  Fri, 11 Jul 2014 10:15:47 +0200
+
+puppet-module-keepalived (1.0.5) unstable; urgency=medium
 
   * Remove invalid param from example
 
