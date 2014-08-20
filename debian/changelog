@@ -1,3 +1,9 @@
+puppet-module-keepalived (1.0.7) unstable; urgency=medium
+
+  * Add some more precise infos, where config comes from
+
+ -- Patrick Schoenfeld <patrick.schoenfeld@credativ.de>  Wed, 20 Aug 2014 09:40:00 +0200
+
 puppet-module-keepalived (1.0.6) unstable; urgency=low
 
   * Quote misc_path so the given command will be executed with parameters.
