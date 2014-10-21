@@ -1,3 +1,9 @@
+puppet-module-keepalived (1.0.8) unstable; urgency=medium
+
+  * Bugfix: weight-argument should not be suffixed by a ':' 
+
+ -- Patrick Schoenfeld <patrick.schoenfeld@credativ.de>  Tue, 21 Oct 2014 09:53:05 +0200
+
 puppet-module-keepalived (1.0.7) unstable; urgency=medium
 
   * Add some more precise infos, where config comes from
