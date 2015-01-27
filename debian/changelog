@@ -1,6 +1,12 @@
+puppet-module-keepalived (1.0.9) unstable; urgency=medium
+
+  * add support for dont_track_primary option in vrrp instances
+
+ -- Carsten Wolff <carsten.wolff@credativ.de>  Tue, 27 Jan 2015 11:43:03 +0100
+
 puppet-module-keepalived (1.0.8) unstable; urgency=medium
 
-  * Bugfix: weight-argument should not be suffixed by a ':' 
+  * Bugfix: weight-argument should not be suffixed by a ':'
 
  -- Patrick Schoenfeld <patrick.schoenfeld@credativ.de>  Tue, 21 Oct 2014 09:53:05 +0200
 
