@@ -36,6 +36,7 @@ vrrp_sync_group VG1 {
 vrrp_instance <%= instance -%> {
     state <%= state %>
     interface <%= config['interface'] %>
+    <% if config['dont_track_primary'] %>dont_track_primary<%- end %>
     virtual_router_id <%= config['router_id'] %>
     lvs_sync_daemon_interface <%= config['interface'] %>
     priority <%= priority %>
