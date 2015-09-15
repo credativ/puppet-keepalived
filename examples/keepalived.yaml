@@ -14,6 +14,9 @@ keepalived_vrrp_instances:
     interface: 'eth0'
     router_id: '52'
     auth_type: 'AH'
+    virtual_routes:
+     - "vroute_123"
+     - "vroute_456"
     auth_pass: 'foobar'
     vip: 192.168.1.10/24
     dont_track_primary: 'true'

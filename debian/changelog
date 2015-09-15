@@ -1,3 +1,9 @@
+puppet-module-keepalived (1.0.10) unstable; urgency=medium
+
+  * Add support for virtual_routes
+
+ -- Damian Lukowski <damian.lukowski@credativ.de>  Tue, 15 Sep 2015 17:43:38 +0200
+
 puppet-module-keepalived (1.0.9) unstable; urgency=medium
 
   * add support for dont_track_primary option in vrrp instances
