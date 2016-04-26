@@ -15,6 +15,7 @@ group :ci, :unit_tests, :development do
 	gem 'hiera', '~> 1.3.4'
     gem 'rspec_junit_formatter'
     gem 'nokogiri'
+  gem 'rspec-hiera-puppet'
 end
 
 group :system_tests do
