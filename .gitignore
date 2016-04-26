@@ -1,0 +1,4 @@
+vagrant/.tmp
+vendor
+spec/fixtures
+.vagrant
