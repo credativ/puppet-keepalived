@@ -1,3 +1,10 @@
+puppet-module-keepalived (1.0.11) UNRELEASED; urgency=medium
+
+  * Add/update module files
+  * Add dependency on rspec-hiera-puppet
+
+ -- Patrick Schoenfeld <patrick.schoenfeld@credativ.de>  Fri, 24 Jun 2016 15:16:58 +0000
+
 puppet-module-keepalived (1.0.10) unstable; urgency=medium
 
   * Add support for virtual_routes
